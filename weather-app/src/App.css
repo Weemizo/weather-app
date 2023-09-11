@@ -1,0 +1,8 @@
+.navbar {
+    background-color: rgb(80, 190, 6);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-family: Arial;
+    width: 100vw;
+}
