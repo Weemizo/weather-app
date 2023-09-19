@@ -12,7 +12,7 @@ function App() {
         <div className='contents'>
 
             <div className='search'>
-              <input type="text" placeholder='Search' className='searchBar'/> <button type="submit"> </button> 
+              <input type="text" placeholder='Search' className='searchBar'/> <div className='lookingGlass'> <img src="./assets/looking-glass.svg" alt="lookingGlass" /> </div>
             </div>
 
         </div>

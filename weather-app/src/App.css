@@ -1,6 +1,7 @@
 .main {
     /* tutaj damy tlo ktore bedzie zmienialo sie wedle pobieranej pogody w danym miescie */
-
+    background-image: var(--tlo);
+    
 }
 
 .navbar {
@@ -9,11 +10,8 @@
     display: flex;
     width: 100vw;
     font-size: large;
-}
-
-.searchBar {
-    background: none;
-    outline: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .searchBar {
