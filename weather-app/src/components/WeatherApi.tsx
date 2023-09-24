@@ -3,8 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import axios, { AxiosResponse } from 'axios';
 import WeatherDisplay from './WeatherDisplay';
 
-console.log(import.meta.env.VITE_API_KEY)
-
 const axiosClient = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5/weather',
 });
@@ -27,9 +25,6 @@ function fetchData(search: string): Promise<AxiosResponse<WeatherApiResponse>> {
     units: units,
     appid: apiKey,
   };
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=${units}&appid=${apiKey}`;
-
-  console.log('API URL:', apiUrl);
 
   return axiosClient.get('', { params: queryParams });
 }
