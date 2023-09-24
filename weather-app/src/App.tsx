@@ -1,26 +1,26 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css'
+import WeatherApi from './components/WeatherApi'
 
-function App() {
+export default function App() {
+
+  const queryClient = new QueryClient()
 
   return (
-    <>
-      <main>
+    <QueryClientProvider client={queryClient}>
+      <body>
         <div className='navbar'>
           Weather App
         </div>
 
         <div className='contents'>
 
-            <div className='search'>
-              <input type="text" placeholder='Search' className='searchBar'/> <div className='lookingGlass'> <img src="./assets/looking-glass.svg" alt="lookingGlass" /> </div>
-            </div>
+        <WeatherApi />
 
         </div>
 
-      </main>
-        {/* https://openweathermap.org/api <<< z tego api bedziemy fetchowac dane do pogody */}
-    </>
+      </body>
+
+      </QueryClientProvider>
   )
 }
-
-export default App

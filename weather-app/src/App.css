@@ -9,7 +9,7 @@
     padding: 0;
     display: flex;
     width: 100vw;
-    font-size: large;
+    font-size: 2rem;
     justify-content: center;
     align-items: center;
 }
