@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import axios, { AxiosResponse } from 'axios';
-import WeatherDisplay from './WeatherDisplay';
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios, { AxiosResponse } from "axios";
+import WeatherDisplay from "./WeatherDisplay";
 
 const axiosClient = axios.create({
-  baseURL: 'https://api.openweathermap.org/data/2.5/weather',
+  baseURL: "https://api.openweathermap.org/data/2.5/weather",
 });
 
 interface WeatherApiResponse {
@@ -19,25 +19,25 @@ interface WeatherApiResponse {
 
 function fetchData(search: string): Promise<AxiosResponse<WeatherApiResponse>> {
   const apiKey = import.meta.env.VITE_API_KEY;
-  const units = 'metric';
+  const units = "metric";
   const queryParams = {
     q: search,
     units: units,
     appid: apiKey,
   };
 
-  return axiosClient.get('', { params: queryParams });
+  return axiosClient.get("", { params: queryParams });
 }
 
 const WeatherApi: React.FC = () => {
-  const [search, setSearch] = useState<string>('');
-  const { data, isLoading, isError, error } = useQuery<AxiosResponse<WeatherApiResponse>, Error>(
-    ['weather', search],
-    () => fetchData(search)
-  );
+  const [search, setSearch] = useState<string>("");
+  const { data, isLoading, isError, error, refetch } = useQuery<
+    AxiosResponse<WeatherApiResponse>,
+    Error
+  >(["weather", search], () => fetchData(search));
 
   const searchButton = () => {
-    fetchData(search);
+    refetch();
   };
 
   return (
@@ -55,6 +55,6 @@ const WeatherApi: React.FC = () => {
       {data && <WeatherDisplay data={data.data} />}
     </div>
   );
-}
+};
 
 export default WeatherApi;
