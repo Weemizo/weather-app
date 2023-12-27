@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "./App.css";
+import "./App.scss";
 import WeatherApi from "./components/WeatherApi";
 
 export default function App() {
