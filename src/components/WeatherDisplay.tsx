@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface WeatherData {
   name: string;
@@ -22,6 +22,6 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data }) => {
       <div>{data.weather[0].description}</div>
     </div>
   );
-}
+};
 
 export default WeatherDisplay;
