@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import WeatherDisplay from "./WeatherDisplay";
-
+import "./WeatherApi.scss";
 const axiosClient = axios.create({
   baseURL: "https://api.openweathermap.org/data/2.5/weather",
 });
@@ -34,22 +34,25 @@ const WeatherApi: React.FC = () => {
   const { data, isLoading, isError, error, refetch } = useQuery<
     AxiosResponse<WeatherApiResponse>,
     Error
-  >(["weather", search], () => fetchData(search));
+  >(["weather", search], () => fetchData(search), {
+    enabled: false,
+  });
 
-  const searchButton = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     refetch();
   };
 
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button onClick={searchButton}>Search</button>
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
 
+  return (
+    <div className="base">
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Search..." onChange={handleChange}/>
+        <button type="submit">Search</button>
+      </form>
       {isLoading && <div>Loading...</div>}
       {isError && <div>Error: {error?.message}</div>}
       {data && <WeatherDisplay data={data.data} />}
