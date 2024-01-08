@@ -14,6 +14,7 @@ interface WeatherApiResponse {
   };
   weather: {
     description: string;
+    icon: string;
   }[];
 }
 
