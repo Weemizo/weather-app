@@ -20,7 +20,7 @@ interface WeatherApiResponse {
 
 function fetchData(search: string): Promise<AxiosResponse<WeatherApiResponse>> {
   const apiKey = import.meta.env.VITE_API_KEY;
-  const units = "metric";
+  const units = "metric"; // dodać tu możliwość zmiany jednostek
   const queryParams = {
     q: search,
     units: units,
@@ -51,7 +51,7 @@ const WeatherApi: React.FC = () => {
   return (
     <div className="base">
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Search..." onChange={handleChange}/>
+        <input type="text" placeholder="Search..." onChange={handleChange} />
         <button type="submit">Search</button>
       </form>
       {isLoading && <div>Loading...</div>}

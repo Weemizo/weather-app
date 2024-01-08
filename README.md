@@ -13,13 +13,16 @@ This is a basic weather app that currently works on 30000 cities.
 
 ## Features
 
- ### Real-time Weather Updates:
+### Real-time Weather Updates:
+
     Keep users informed with up-to-date weather information, leveraging Axios for seamless API calls to fetch the latest weather data.
 
- ### Efficient Data Fetching:
+### Efficient Data Fetching:
+
     Optimize data fetching with Tanstack Query, a powerful and efficient data fetching library. Use its hooks to easily manage and update the application state based on the fetched data.
 
- ### Location-based Weather Display:
+### Location-based Weather Display:
+
     Enhance user experience by allowing them to input or detect their location for personalized weather updates. Display relevant weather details based on the user's chosen location.
 
 ## Other
