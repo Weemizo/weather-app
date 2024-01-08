@@ -7,6 +7,7 @@ interface WeatherData {
   };
   weather: {
     description: string;
+    icon: string;
   }[];
 }
 
@@ -15,11 +16,18 @@ interface WeatherDisplayProps {
 }
 
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data }) => {
+
+  const [name, temp, description, icon] = [data.name, data.main.temp, data.weather[0].description, data.weather[0].icon];
+
+
   return (
     <div>
-      <div>{data.name}</div>
-      <div>{data.main.temp}°C</div>
-      <div>{data.weather[0].description}</div>
+      <div>{name}</div>
+      <div>{temp}°C</div>
+      <div>{description}</div>
+      <div>
+        <img src={`https://openweathermap.org/img/wn/${icon.toString()}@2x.png`} alt="" />
+        </div>
     </div>
   );
 };
