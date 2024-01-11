@@ -13,9 +13,10 @@ interface WeatherData {
 
 interface WeatherDisplayProps {
   data: WeatherData;
+  system: string;
 }
 
-const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data }) => {
+const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data, system }) => {
   const [name, temp, description, icon] = [
     data.name,
     data.main.temp,
@@ -26,7 +27,10 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data }) => {
   return (
     <div>
       <div>{name}</div>
-      <div>{temp}°C</div>
+      <div>
+        {temp}
+        {system === "metric" ? "°C" : "°F"}
+      </div>
       <div>{description}</div>
       <div>
         <img
