@@ -26,7 +26,6 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data, system }) => {
 
   return (
     <div>
-      {/* przeczytac useState z WeatherApi.tsx dot. systemu i zamieniac C na F etc. */}
       <div>{name}</div>
       <div>
         {temp}
