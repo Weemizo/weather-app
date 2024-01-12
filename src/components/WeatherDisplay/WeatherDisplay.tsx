@@ -1,14 +1,19 @@
 import React from "react";
 
 interface WeatherData {
-  name: string;
-  main: {
-    temp: number;
-  };
-  weather: {
-    description: string;
-    icon: string;
+  list: { // it isn't dynamic yet, add a loop to display all the data [or at least 3 days]
+      dt_txt: string;
+      main: {
+        temp: number;
+      };
+      weather: {
+        description: string;
+        icon: string;
+      }[];
   }[];
+  city: {
+    name: string;
+  };
 }
 
 interface WeatherDisplayProps {
@@ -17,16 +22,16 @@ interface WeatherDisplayProps {
 }
 
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data, system }) => {
-  const [name, temp, description, icon] = [
-    data.name,
-    data.main.temp,
-    data.weather[0].description,
-    data.weather[0].icon,
+  const [city, temp, description, icon] = [
+    data.city.name,
+    data.list[0].main.temp,
+    data.list[0].weather[0].description,
+    data.list[0].weather[0].icon,
   ];
 
   return (
     <div>
-      <div>{name}</div>
+      <div>{city}</div>
       <div>
         {temp}
         {system === "metric" ? "°C" : "°F"}
