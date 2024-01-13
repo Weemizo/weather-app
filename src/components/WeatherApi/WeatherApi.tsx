@@ -68,7 +68,7 @@ const WeatherApi: React.FC = () => {
         <input type="text" placeholder="Search..." onChange={handleChange} />
         <button type="submit"> {lang === "en" ? "Search" : "Szukaj"} </button>
         <System system={system} setSystem={setSystem} lang={lang} />
-        <Select lang={lang} setLang={setLang} />
+        <Select lang={lang} setLang={setLang} refetch={refetch} />
         {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
         {isError && (
           <div>
