@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import WeatherDisplay from "../WeatherDisplay/WeatherDisplay";
@@ -40,6 +40,7 @@ const WeatherApi: React.FC = () => {
   function fetchData(
     search: string,
   ): Promise<AxiosResponse<WeatherApiResponse>> {
+    
     const apiKey = import.meta.env.VITE_API_KEY;
     const units = system;
     const queryParams = {
@@ -61,6 +62,10 @@ const WeatherApi: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
+
+  useEffect(() => {
+    refetch();
+  }, [lang, refetch]);
 
   return (
     <div className="base">
