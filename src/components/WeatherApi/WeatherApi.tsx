@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import { useState,  } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
-import WeatherDisplay from "./WeatherDisplay";
+import WeatherDisplay from "../WeatherDisplay/WeatherDisplay";
+import Select from "../Select/Select";
+import System from "../System/System";
 import "./WeatherApi.scss";
 
 const axiosClient = axios.create({
-  baseURL: "https://api.openweathermap.org/data/2.5/weather",
+  baseURL: "https://api.openweathermap.org/data/2.5/forecast",
 });
 
 interface WeatherApiResponse {
-  name: string;
-  main: {
-    temp: number;
-  };
-  weather: {
-    description: string;
-    icon: string;
+  list: {
+    dt: number;
+    dt_txt: string;
+    main: {
+      temp: number;
+    };
+    weather: {
+      description: string;
+      icon: string;
+    }[];
   }[];
+  city: {
+    name: string;
+  };
 }
 
 const WeatherApi: React.FC = () => {
@@ -26,7 +34,7 @@ const WeatherApi: React.FC = () => {
   const { data, isLoading, isError, error, refetch } = useQuery<
     AxiosResponse<WeatherApiResponse>,
     Error
-  >(["weather", search], () => fetchData(search), {
+  >(["forecast", search], () => fetchData(search), {
     enabled: false,
   });
 
@@ -41,7 +49,7 @@ const WeatherApi: React.FC = () => {
       lang: lang,
       appid: apiKey,
     };
-
+    console.log("Query Params:", queryParams)
     return axiosClient.get("", { params: queryParams });
   }
 
@@ -54,36 +62,14 @@ const WeatherApi: React.FC = () => {
     setSearch(event.target.value);
   };
 
-  const handleLang = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setLang(event.target.value);
-    refetch();
-  };
 
   return (
     <div className="base">
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Search..." onChange={handleChange} />
         <button type="submit"> {lang === "en" ? "Search" : "Szukaj"} </button>
-        <button
-          onClick={() =>
-            system === "metric" ? setSystem("imperial") : setSystem("metric")
-          }
-        >
-          {lang === "en"
-            ? `click to change: ${system}`
-            : system === "metric"
-              ? `naciśnij aby zmienić: metryczny`
-              : `naciśnij aby zmienić: imperialny`}
-        </button>
-        <select onChange={handleLang}>
-          <option>
-            {lang === "en" ? "Choose the language:" : "Wybierz język"}
-          </option>
-          <option value="en">{lang === "en" ? "English" : "Angielski"}</option>
-          <option value="pl">{lang === "en" ? "Polish" : "Polski"}</option>
-        </select>
+        <System system={system} setSystem={setSystem} lang={lang} />
+        <Select lang={lang} setLang={setLang} refetch={refetch} />
         {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
         {isError && (
           <div>
@@ -93,7 +79,9 @@ const WeatherApi: React.FC = () => {
               : "Żądanie nie powiodło się z kodem stanu 404"}
           </div>
         )}
-        {data && <WeatherDisplay data={data.data} system={system} />}
+        {data && (
+          <WeatherDisplay data={data.data} system={system} lang={lang} />
+        )}
       </form>
     </div>
   );

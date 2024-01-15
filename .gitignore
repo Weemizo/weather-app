@@ -25,3 +25,6 @@ dist-ssr
 
 .env
 .env.local
+
+# api test json
+forecast.json
