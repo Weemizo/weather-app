@@ -1,15 +1,16 @@
-import React from "react";
+import "./WeatherDisplay.scss";
 
 interface WeatherData {
-  list: { // it isn't dynamic yet, add a loop to display all the data [or at least 3 days]
-      dt_txt: string;
-      main: {
-        temp: number;
-      };
-      weather: {
-        description: string;
-        icon: string;
-      }[];
+  list: {
+    dt: number;
+    dt_txt: string;
+    main: {
+      temp: number;
+    };
+    weather: {
+      description: string;
+      icon: string;
+    }[];
   }[];
   city: {
     name: string;
@@ -19,30 +20,45 @@ interface WeatherData {
 interface WeatherDisplayProps {
   data: WeatherData;
   system: string;
+  lang: string;
 }
 
-const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data, system }) => {
-  const [city, temp, description, icon] = [
-    data.city.name,
-    data.list[0].main.temp,
-    data.list[0].weather[0].description,
-    data.list[0].weather[0].icon,
-  ];
+const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
+  data,
+  system,
+  lang,
+}) => {
+  const [city] = data.city.name.split(",");
 
   return (
-    <div>
-      <div>{city}</div>
-      <div>
-        {temp}
-        {system === "metric" ? "°C" : "°F"}
-      </div>
-      <div>{description}</div>
-      <div>
-        <img
-          src={`https://openweathermap.org/img/wn/${icon.toString()}@2x.png`}
-          alt=""
-        />
-      </div>
+    <div className="weather">
+      <h1>{city}</h1>
+      {data.list
+        .filter((_, index) => index % 8 === 0)
+        .map(({ dt, dt_txt, main, weather }, index) => {
+          const dayLabels: { [key: string]: string[] } = {
+            en: ["Today", "Tomorrow", "Day after tomorrow"],
+            pl: ["Dzisiaj", "Jutro", "Pojutrze"],
+          };
+
+          const dayLabel = dayLabels[lang]?.[index] || "";
+
+          return (
+            <div key={dt}>
+              <div className="weather-date">
+                {`${dayLabel} ${dt_txt.split(" ")[0]}`}
+              </div>
+              <div className="weather-data">
+                {main.temp}
+                {system === "metric" ? "°C" : "°F"} {weather[0].description}
+                <img
+                  src={`https://openweathermap.org/img/wn/${weather[0].icon.toString()}.png`}
+                  alt={weather[0].icon}
+                />
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 };

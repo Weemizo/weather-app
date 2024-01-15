@@ -6,21 +6,25 @@ interface SelectProps {
 }
 
 function Select({ lang, setLang, refetch }: SelectProps) {
-
   const handleLang = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
     setLang(event.target.value);
-    refetch();
+    setTimeout(() => {
+      refetch();
+    }, 100);
+  };
+
+  const langLabels: { [key: string]: string[] } = {
+    en: ["Choose language", "English", "Polish"],
+    pl: ["Wybierz język", "Angielski", "Polski"],
   };
 
   return (
     <select onChange={handleLang}>
-      <option disabled>
-        {lang === "en" ? "Choose language" : "Wybierz język"}
-      </option>
-      <option value="en">{lang === "en" ? "English" : "Angielski"}</option>
-      <option value="pl">{lang === "en" ? "Polish" : "Polski"}</option>
+      <option disabled>{langLabels[lang]?.[0]}</option>
+      <option value="en">{langLabels[lang]?.[1]}</option>
+      <option value="pl">{langLabels[lang]?.[2]}</option>
     </select>
   );
 }

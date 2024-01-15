@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState,  } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import WeatherDisplay from "../WeatherDisplay/WeatherDisplay";
@@ -11,15 +11,16 @@ const axiosClient = axios.create({
 });
 
 interface WeatherApiResponse {
-  list: { // it isn't dynamic yet, add a loop to display all the data [or at least 3 days]
-      dt_txt: string;
-      main: {
-        temp: number;
-      };
-      weather: {
-        description: string;
-        icon: string;
-      }[];
+  list: {
+    dt: number;
+    dt_txt: string;
+    main: {
+      temp: number;
+    };
+    weather: {
+      description: string;
+      icon: string;
+    }[];
   }[];
   city: {
     name: string;
@@ -40,7 +41,6 @@ const WeatherApi: React.FC = () => {
   function fetchData(
     search: string,
   ): Promise<AxiosResponse<WeatherApiResponse>> {
-    
     const apiKey = import.meta.env.VITE_API_KEY;
     const units = system;
     const queryParams = {
@@ -48,9 +48,8 @@ const WeatherApi: React.FC = () => {
       units: units,
       lang: lang,
       appid: apiKey,
-      cnt: 24, // 3 days, 3 hours interval
     };
-
+    console.log("Query Params:", queryParams)
     return axiosClient.get("", { params: queryParams });
   }
 
@@ -63,9 +62,6 @@ const WeatherApi: React.FC = () => {
     setSearch(event.target.value);
   };
 
-  useEffect(() => {
-    refetch();
-  }, [lang, refetch]);
 
   return (
     <div className="base">
@@ -83,7 +79,9 @@ const WeatherApi: React.FC = () => {
               : "Żądanie nie powiodło się z kodem stanu 404"}
           </div>
         )}
-        {data && <WeatherDisplay data={data.data} system={system} />}
+        {data && (
+          <WeatherDisplay data={data.data} system={system} lang={lang} />
+        )}
       </form>
     </div>
   );

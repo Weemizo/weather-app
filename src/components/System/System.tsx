@@ -14,10 +14,10 @@ function System({ system, lang, setSystem }: SystemProps) {
       }
     >
       {lang === "en"
-        ? `click to change: ${system}`
+        ? system
         : system === "metric"
-          ? `naciśnij aby zmienić: metryczny`
-          : `naciśnij aby zmienić: imperialny`}
+          ? `metryczny`
+          : `imperialny`}
     </button>
   );
 }
