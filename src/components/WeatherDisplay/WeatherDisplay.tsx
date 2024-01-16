@@ -35,18 +35,20 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
       <h1>{city}</h1>
       {data.list
         .filter((_, index) => index % 8 === 0)
-        .map(({ dt, dt_txt, main, weather }, index) => {
-          const dayLabels: { [key: string]: string[] } = {
-            en: ["Today", "Tomorrow", "Day after tomorrow"],
-            pl: ["Dzisiaj", "Jutro", "Pojutrze"],
+        .map(({ dt, dt_txt, main, weather }) => {
+
+          const day = new Date(dt_txt).getDay();
+          const days: { [key: string]: string[] } = {
+            en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            pl: ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek","Sobota"],
           };
 
-          const dayLabel = dayLabels[lang]?.[index] || "";
+          const dayLabel = days[lang]?.[day] || "";
 
           return (
             <div key={dt}>
               <div className="weather-date">
-                {`${dayLabel} ${dt_txt.split(" ")[0]}`}
+                {`${dayLabel} ${dt_txt.split(" ")[0].split("-")[2]}-${dt_txt.split(" ")[0].split("-")[1]}`}
               </div>
               <div className="weather-data">
                 {main.temp}
