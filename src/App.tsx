@@ -7,7 +7,7 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="app">
+      <div className="app" >
         <div className="navbar">Weather App</div>
         <div className="contents">
           <WeatherApi />

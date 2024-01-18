@@ -10,6 +10,7 @@ interface WeatherData {
     weather: {
       description: string;
       icon: string;
+      main: string;
     }[];
   }[];
   city: {
@@ -30,6 +31,8 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
 }) => {
   const [city] = data.city.name.split(",");
 
+
+
   return (
     <div className="weather">
       <h1>{city}</h1>
@@ -45,6 +48,36 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
 
           const dayLabel = days[lang]?.[day] || "";
 
+          const backgroundImages = () => {
+            const images = {
+              mist: "src/assets/images/mist.png",
+              rainy: "src/assets/images/rainy.png",
+              clear: "src/assets/images/clear.png",
+              cloudy: "src/assets/images/cloudy.png",
+              snow: "src/assets/images/snow.png",
+              thunderstorm: "src/assets/images/thunderstorm.png",
+            };
+        
+            if (weather[0].main === "Mist") {
+              return images.mist;
+            }
+            else if (weather[0].main === "Rain" || weather[0].main === "Drizzle") {
+              return images.rainy;
+            }
+            else if (weather[0].main === "Clear") {
+              return images.clear;
+            }
+            else if (weather[0].main === "Clouds") {
+              return images.cloudy;
+            }
+            else if (weather[0].main === "Snow") {
+              return images.snow;
+            }
+            else if (weather[0].main === "Thunderstorm") {
+              return images.thunderstorm;
+            }
+          }
+
           return (
             <div key={dt}>
               <div className="weather-date">
@@ -54,8 +87,8 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
                 {main.temp}
                 {system === "metric" ? "°C" : "°F"} {weather[0].description}
                 <img
-                  src={`https://openweathermap.org/img/wn/${weather[0].icon.toString()}.png`}
-                  alt={weather[0].icon}
+                  src={backgroundImages()}
+                  alt={weather[0].description}
                 />
               </div>
             </div>
