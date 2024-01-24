@@ -47,36 +47,29 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
           };
 
           const dayLabel = days[lang]?.[day] || "";
-
-          const backgroundImages = () => {
-            const images = {
-              mist: "src/assets/images/mist.png",
-              rainy: "src/assets/images/rainy.png",
-              clear: "src/assets/images/clear.png",
-              cloudy: "src/assets/images/cloudy.png",
-              snow: "src/assets/images/snow.png",
-              thunderstorm: "src/assets/images/thunderstorm.png",
-            };
-        
-            if (weather[0].main === "Mist") {
-              return images.mist;
-            }
-            else if (weather[0].main === "Rain" || weather[0].main === "Drizzle") {
-              return images.rainy;
-            }
-            else if (weather[0].main === "Clear") {
-              return images.clear;
-            }
-            else if (weather[0].main === "Clouds") {
-              return images.cloudy;
-            }
-            else if (weather[0].main === "Snow") {
-              return images.snow;
-            }
-            else if (weather[0].main === "Thunderstorm") {
-              return images.thunderstorm;
-            }
+          
+          const dayOrNight = () => {
+            return weather[0].icon.slice(-1) === "d" ? "day" : "night";
           }
+
+            const weatherImages: { [key: string]: string} = { 
+              Thunderstorm: `src/assets/svg/wi-${dayOrNight()}-thunderstorm.svg`,
+              Rain: `src/assets/svg/wi-${dayOrNight()}-rain.svg`, 
+              Snow: `src/assets/svg/wi-${dayOrNight()}-snow.svg`,
+              Mist: `src/assets/svg/wi-${dayOrNight()}-sprinkle.svg`,
+              Smoke: "src/assets/svg/wi-smoke.svg",
+              Dust: "src/assets/svg/wi-dust.svg",
+              Haze: `src/assets/svg/wi-${dayOrNight()}-fog.svg`,
+              Fog: `src/assets/svg/wi-${dayOrNight()}-fog.svg`,
+              Sand: "src/assets/svg/wi-sandstorm.svg",
+              Ash: "src/assets/svg/wi-volcano.svg",
+              Squall: `src/assets/svg/wi-strong-wind.svg`,
+              Tornado: `src/assets/svg/wi-${dayOrNight()}-tornado.svg`,
+              Clear: `src/assets/svg/wi-${dayOrNight()}-clear.svg`,
+              Clouds: `src/assets/svg/wi-${dayOrNight()}-cloudy.svg`,
+            };
+
+            const weatherIcon = weatherImages[weather[0].main];
 
           return (
             <div key={dt}>
@@ -87,7 +80,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
                 {main.temp}
                 {system === "metric" ? "°C" : "°F"} {weather[0].description}
                 <img
-                  src={backgroundImages()}
+                  src={weatherIcon}
                   alt={weather[0].description}
                 />
               </div>
