@@ -80,10 +80,12 @@ const WeatherApi: React.FC = () => {
               : "Żądanie nie powiodło się z kodem stanu 404"}
           </div>
         )}
-        {data && (
+      </form>
+      <div className="data">
+      {data && (
           <WeatherDisplay data={data.data} system={system} lang={lang} />
         )}
-      </form>
+      </div>
     </div>
   );
 };

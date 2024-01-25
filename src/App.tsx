@@ -9,9 +9,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <div className="app" >
         <div className="navbar">Weather App</div>
-        <div className="contents">
           <WeatherApi />
-        </div>
       </div>
     </QueryClientProvider>
   );

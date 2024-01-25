@@ -31,11 +31,10 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
 }) => {
   const [city] = data.city.name.split(",");
 
-
-
   return (
     <div className="weather">
       <h1>{city}</h1>
+      <div className="weather-data-container"> 
       {data.list
         .filter((_, index) => index % 8 === 0)
         .map(({ dt, dt_txt, main, weather }) => {
@@ -72,7 +71,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
             const weatherIcon = weatherImages[weather[0].main];
 
           return (
-            <div key={dt}>
+            <div key={dt} className="weather-div">
               <div className="weather-date">
                 {`${dayLabel} ${dt_txt.split(" ")[0].split("-")[2]}-${dt_txt.split(" ")[0].split("-")[1]}`}
               </div>
@@ -87,6 +86,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
             </div>
           );
         })}
+      </div>
     </div>
   );
 };
