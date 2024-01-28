@@ -9,8 +9,9 @@ interface SystemProps {
 function System({ system, lang, setSystem }: SystemProps) {
   return (
     <button
+      className="system"
       onClick={() => {
-        system === "metric" ? setSystem("imperial") : setSystem("metric")
+        system === "metric" ? setSystem("imperial") : setSystem("metric");
       }}
     >
       {lang === "en"

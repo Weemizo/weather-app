@@ -1,9 +1,10 @@
-import { useState,  } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import WeatherDisplay from "../WeatherDisplay/WeatherDisplay";
 import Select from "../Select/Select";
 import System from "../System/System";
+import LangContext from "../../contexts/LangContext/Lang";
 import "./WeatherApi.scss";
 
 const axiosClient = axios.create({
@@ -28,8 +29,10 @@ interface WeatherApiResponse {
   };
 }
 
-const WeatherApi: React.FC = () => {
-  const [lang, setLang] = useState<string>("en");
+const WeatherApi: React.FC<{ lang: string; setLang: React.Dispatch<React.SetStateAction<string>> }> = ({
+  lang,
+  setLang,
+}) => {
   const [system, setSystem] = useState<string>("metric");
   const [search, setSearch] = useState<string>("");
   const { data, isLoading, isError, error, refetch } = useQuery<
@@ -50,7 +53,7 @@ const WeatherApi: React.FC = () => {
       lang: lang,
       appid: apiKey,
     };
-    console.log("Query Params:", queryParams)
+    console.log("Query Params:", queryParams);
     return axiosClient.get("", { params: queryParams });
   }
 
@@ -63,12 +66,12 @@ const WeatherApi: React.FC = () => {
     setSearch(event.target.value);
   };
 
-
   return (
+    <LangContext.Provider value={lang}>
     <div className="base">
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Search..." onChange={handleChange} />
-        <button type="submit"> {lang === "en" ? "Search" : "Szukaj"} </button>
+        <button type="submit" className="submit"> {lang === "en" ? "Search" : "Szukaj"} </button>
         <System system={system} setSystem={setSystem} lang={lang} />
         <Select lang={lang} setLang={setLang} refetch={refetch} />
         {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
@@ -82,11 +85,12 @@ const WeatherApi: React.FC = () => {
         )}
       </form>
       <div className="data">
-      {data && (
+        {data && (
           <WeatherDisplay data={data.data} system={system} lang={lang} />
         )}
       </div>
     </div>
+    </LangContext.Provider>
   );
 };
 
