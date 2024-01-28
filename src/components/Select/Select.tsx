@@ -21,7 +21,7 @@ function Select({ lang, setLang, refetch }: SelectProps) {
   };
 
   return (
-    <select onChange={handleLang}>
+    <select onChange={handleLang} className="select">
       <option disabled>{langLabels[lang]?.[0]}</option>
       <option value="en">{langLabels[lang]?.[1]}</option>
       <option value="pl">{langLabels[lang]?.[2]}</option>
