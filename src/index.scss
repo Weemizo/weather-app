@@ -2,4 +2,29 @@
   margin: 0;
   padding: 0;
   font-family: Inter;
+  scrollbar-color: #454a4d #202324;
+}
+
+:root {
+  --background: hsl(213, 60%, 74%);
+  --2nd-background: #cceafd;
+  --elements: #0779c1;
+  --box-shadow: rgba(0, 0, 0, 0.315);
+  --text-shadow: rgba(106, 103, 103, 0.973);
+  --text: #272d40;
+  --border: #333;
+  --filter: invert(33%) sepia(85%) saturate(872%) hue-rotate(172deg)
+    brightness(95%) contrast(103%);
+}
+
+[data-theme="dark"] {
+  --background: #163253;
+  --2nd-background: #181b29;
+  --elements: #054e7b;
+  --box-shadow: rgba(0, 0, 0, 0.32);
+  --text-shadow: rgba(106, 103, 103, 0.973);
+  --text: #cdc8c2;
+  --border: #414749;
+  --filter: invert(33%) sepia(85%) saturate(872%) hue-rotate(172deg)
+    brightness(95%) contrast(103%);
 }

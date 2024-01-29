@@ -6,6 +6,7 @@
   align-items: center;
   text-align: center;
   margin: 2rem;
+  color: var(--text);
 }
 
 .data {
@@ -13,40 +14,41 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  
 }
 
 .base input {
-    border-radius: 2rem;
-    width: 150px;
-    font-size: 1rem;
-    outline: none;
-    transition: padding 0.3s ease-in-out 0.2s, width 0.3s ease-in-out;
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: padding, width;
-    border: 1px solid #333;
-    font-weight: 500;
-    padding: 0.5rem;
-    margin-right: 1rem;
-    background-color: #cceafd;
-
-
+  border-radius: 2rem;
+  width: 150px;
+  font-size: 1rem;
+  outline: none;
+  transition:
+    padding 0.3s ease-in-out 0.2s,
+    width 0.3s ease-in-out;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: padding, width;
+  border: 1px solid var(--border);
+  font-weight: 500;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  background-color: var(--2nd-background);
+  color: var(--text);
 }
 
 .base input:focus {
-    width: 200px;
-    background-color: #0779c1;
+  width: 200px;
+  background-color: var(--elements);
 }
 
-.submit, Select {
-    border-radius: 2rem;
-    font-size: 1rem;
-    outline: none;
-    border: 1px solid #333;
-    font-weight: 500;
-    padding: 0.5rem;
-    margin-right: 1rem;
-    background-color: #cceafd;
-    cursor: pointer;
+.submit,
+Select {
+  border-radius: 2rem;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid var(--border);
+  font-weight: 500;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  background-color: var(--2nd-background);
+  cursor: pointer;
+  color: var(--text);
 }
-

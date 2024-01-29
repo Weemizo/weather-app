@@ -29,10 +29,10 @@ interface WeatherApiResponse {
   };
 }
 
-const WeatherApi: React.FC<{ lang: string; setLang: React.Dispatch<React.SetStateAction<string>> }> = ({
-  lang,
-  setLang,
-}) => {
+const WeatherApi: React.FC<{
+  lang: string;
+  setLang: React.Dispatch<React.SetStateAction<string>>;
+}> = ({ lang, setLang }) => {
   const [system, setSystem] = useState<string>("metric");
   const [search, setSearch] = useState<string>("");
   const { data, isLoading, isError, error, refetch } = useQuery<
@@ -68,28 +68,31 @@ const WeatherApi: React.FC<{ lang: string; setLang: React.Dispatch<React.SetStat
 
   return (
     <LangContext.Provider value={lang}>
-    <div className="base">
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Search..." onChange={handleChange} />
-        <button type="submit" className="submit"> {lang === "en" ? "Search" : "Szukaj"} </button>
-        <System system={system} setSystem={setSystem} lang={lang} />
-        <Select lang={lang} setLang={setLang} refetch={refetch} />
-        {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
-        {isError && (
-          <div>
-            {lang === "en" ? "Error:" : "Błąd:"}
-            {lang === "en"
-              ? error?.message
-              : "Żądanie nie powiodło się z kodem stanu 404"}
-          </div>
-        )}
-      </form>
-      <div className="data">
-        {data && (
-          <WeatherDisplay data={data.data} system={system} lang={lang} />
-        )}
+      <div className="base">
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Search..." onChange={handleChange} />
+          <button type="submit" className="submit">
+            {" "}
+            {lang === "en" ? "Search" : "Szukaj"}{" "}
+          </button>
+          <System system={system} setSystem={setSystem} lang={lang} />
+          <Select lang={lang} setLang={setLang} refetch={refetch} />
+          {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
+          {isError && (
+            <div>
+              {lang === "en" ? "Error:" : "Błąd:"}
+              {lang === "en"
+                ? error?.message
+                : "Żądanie nie powiodło się z kodem stanu 404"}
+            </div>
+          )}
+        </form>
+        <div className="data">
+          {data && (
+            <WeatherDisplay data={data.data} system={system} lang={lang} />
+          )}
+        </div>
       </div>
-    </div>
     </LangContext.Provider>
   );
 };

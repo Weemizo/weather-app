@@ -20,10 +20,10 @@
   text-align: center;
   margin: 2rem;
   padding: 1rem;
-  border: 1px solid #333;
+  border: 1px solid var(--border);
   border-radius: 1rem;
-  border-bottom: 0.5rem solid #333;
-  background-color: #cceafd;
+  border-bottom: 0.5rem solid var(--border);
+  background-color: var(--2nd-background);
 }
 
 .weather-date {
@@ -40,7 +40,6 @@
     width: 10rem;
     height: 10rem;
     margin: auto;
-    filter: invert(33%) sepia(85%) saturate(872%) hue-rotate(172deg)
-      brightness(95%) contrast(103%);
+    filter: var(--filter);
   }
 }

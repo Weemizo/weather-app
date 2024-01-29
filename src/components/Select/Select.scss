@@ -1,25 +1,26 @@
 @import "../../utils/Variables/_variables.scss";
 
 .select {
-    display: flex;
-    text-align: center;
-    margin-left: 1rem;
-    padding-left: 1rem;
-    display: inline-block;
-    border-radius: 2rem;
-    width: 150px;
-    position: relative;
-    font-size: 1rem;
-    border-radius: 2rem;
-    outline: none;
-    will-change: padding, width;
-    border: 1px solid #333;
-    font-weight: 500;
-    padding: 0.5rem;
+  display: flex;
+  text-align: center;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  display: inline-block;
+  border-radius: 2rem;
+  width: 150px;
+  position: relative;
+  font-size: 1rem;
+  border-radius: 2rem;
+  outline: none;
+  will-change: padding, width;
+  border: 1px solid var(--border);
+  font-weight: 500;
+  padding: 0.5rem;
+  color: var(--text);
 }
 
 select option {
-    color: #333;
-    text-align: center;
-    font-weight: 500;
+  color: var(--text);
+  text-align: center;
+  font-weight: 500;
 }

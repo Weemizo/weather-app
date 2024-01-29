@@ -11,7 +11,6 @@ This is a basic weather app that currently works on 30000 cities.
 ![Axios](https://img.shields.io/badge/Axios-38D7F7?style=for-the-badge&logo=reactquery&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-
 ## Other
 
 Hooks used: useState, useEffect, useContext

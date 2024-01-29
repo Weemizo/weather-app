@@ -1,7 +1,7 @@
 .app {
   height: 100vh;
-  color: #333;
-  background-color: hsl(213, 60%, 74%);
+  color: var(--text);
+  background-color: var(--background);
 }
 
 .navbar {
@@ -13,8 +13,8 @@
   justify-content: center;
   align-items: center;
   height: 5rem;
-  background-color: #0779c1;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.315);
-  text-shadow: 0px 2px 4px rgba(106, 103, 103, 0.973);
+  background-color: var(--2nd-background);
+  box-shadow: 0px 2px 4px var(--box-shadow);
+  text-shadow: 0px 2px 4px var(--text-shadow);
   font-weight: 700;
 }

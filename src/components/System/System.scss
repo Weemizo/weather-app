@@ -1,15 +1,16 @@
 @import "../../utils/Variables/_variables.scss";
 
 .system {
-    display: inline-block;
-    border-radius: 2rem;
-    padding: 0.5rem;
-    position: relative;
-    font-size: 1rem;
-    border-radius: 2rem;
-    outline: none;
-    border: 1px solid #333;
-    font-weight: 500;
-    background-color: #cceafd;
-    cursor: pointer;
+  display: inline-block;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  position: relative;
+  font-size: 1rem;
+  border-radius: 2rem;
+  outline: none;
+  border: 1px solid var(--border);
+  font-weight: 500;
+  background-color: var(--2nd-background);
+  cursor: pointer;
+  color: var(--text);
 }
