@@ -48,20 +48,20 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
             };
 
             const weatherImages: { [key: string]: string } = {
-              Thunderstorm: `src/assets/svg/wi-${dayOrNight()}-thunderstorm.svg`,
-              Rain: `src/assets/svg/wi-${dayOrNight()}-rain.svg`,
-              Snow: `src/assets/svg/wi-${dayOrNight()}-snow.svg`,
-              Mist: `src/assets/svg/wi-${dayOrNight()}-sprinkle.svg`,
-              Smoke: "src/assets/svg/wi-smoke.svg",
-              Dust: "src/assets/svg/wi-dust.svg",
-              Haze: `src/assets/svg/wi-${dayOrNight()}-fog.svg`,
-              Fog: `src/assets/svg/wi-${dayOrNight()}-fog.svg`,
-              Sand: "src/assets/svg/wi-sandstorm.svg",
-              Ash: "src/assets/svg/wi-volcano.svg",
-              Squall: `src/assets/svg/wi-strong-wind.svg`,
-              Tornado: `src/assets/svg/wi-${dayOrNight()}-tornado.svg`,
-              Clear: `src/assets/svg/wi-${dayOrNight()}-clear.svg`,
-              Clouds: `src/assets/svg/wi-${dayOrNight()}-cloudy.svg`,
+              Thunderstorm: `internal/wi-${dayOrNight()}-thunderstorm.svg`,
+              Rain: `internal/wi-${dayOrNight()}-rain.svg`,
+              Snow: `internal/wi-${dayOrNight()}-snow.svg`,
+              Mist: `internal/wi-${dayOrNight()}-sprinkle.svg`,
+              Smoke: "internal/wi-smoke.svg",
+              Dust: "internal/wi-dust.svg",
+              Haze: `internal/wi-${dayOrNight()}-fog.svg`,
+              Fog: `internal/wi-${dayOrNight()}-fog.svg`,
+              Sand: "internal/wi-sandstorm.svg",
+              Ash: "internal/wi-volcano.svg",
+              Squall: `internal/wi-strong-wind.svg`,
+              Tornado: `internal/wi-${dayOrNight()}-tornado.svg`,
+              Clear: `internal/wi-${dayOrNight()}-clear.svg`,
+              Clouds: `internal/wi-${dayOrNight()}-cloudy.svg`,
             };
 
             const weatherIcon = weatherImages[weather[0].main];
