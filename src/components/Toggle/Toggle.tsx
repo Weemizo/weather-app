@@ -1,10 +1,20 @@
-// import { useState, useEffect } from "react";
+import "./Toggle.scss";
 
-function Toggle() {
+interface ToggleProps {
+  darkMode: boolean;
+  setDarkMode: (darkMode: boolean) => void;
+}
+
+function Toggle({ darkMode, setDarkMode }: ToggleProps) {
   // const [darkMode, setDarkMode] = useState<boolean>(true);
   return (
     <div className="darkmode">
-      <input type="checkbox" className="toggle" onClick={() => {}} />
+      <input
+      type="checkbox"
+      className="toggle" 
+      checked={darkMode}
+      onChange={() => setDarkMode(!darkMode)}
+      />
     </div>
   );
 }

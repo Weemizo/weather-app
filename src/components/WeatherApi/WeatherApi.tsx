@@ -5,6 +5,8 @@ import WeatherDisplay from "../WeatherDisplay/WeatherDisplay";
 import Select from "../Select/Select";
 import System from "../System/System";
 import LangContext from "../../contexts/LangContext/Lang";
+import Toggle from "../Toggle/Toggle";
+import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
 import "./WeatherApi.scss";
 
 const axiosClient = axios.create({
@@ -32,7 +34,9 @@ interface WeatherApiResponse {
 const WeatherApi: React.FC<{
   lang: string;
   setLang: React.Dispatch<React.SetStateAction<string>>;
-}> = ({ lang, setLang }) => {
+  darkMode: boolean;
+  setDarkMode: (darkMode: boolean) => void;
+}> = ({ lang, setLang, darkMode, setDarkMode }) => {
   const [system, setSystem] = useState<string>("metric");
   const [search, setSearch] = useState<string>("");
   const { data, isLoading, isError, error, refetch } = useQuery<
@@ -67,15 +71,17 @@ const WeatherApi: React.FC<{
   };
 
   return (
+    <ThemeContext.Provider value={darkMode}>
     <LangContext.Provider value={lang}>
       <div className="base">
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Search..." onChange={handleChange} />
+          <input type="text" placeholder="Search..." onChange={handleChange} className="search"/>
           <button type="submit" className="submit">
             {" "}
             {lang === "en" ? "Search" : "Szukaj"}{" "}
           </button>
           <System system={system} setSystem={setSystem} lang={lang} />
+          <Toggle darkMode={darkMode} setDarkMode={setDarkMode} />
           <Select lang={lang} setLang={setLang} refetch={refetch} />
           {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
           {isError && (
@@ -94,6 +100,7 @@ const WeatherApi: React.FC<{
         </div>
       </div>
     </LangContext.Provider>
+    </ThemeContext.Provider>
   );
 };
 

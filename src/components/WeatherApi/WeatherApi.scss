@@ -16,7 +16,7 @@
   align-items: center;
 }
 
-.base input {
+.search {
   border-radius: 2rem;
   width: 150px;
   font-size: 1rem;
@@ -34,7 +34,7 @@
   color: var(--text);
 }
 
-.base input:focus {
+.search:focus {
   width: 200px;
   background-color: var(--elements);
 }
