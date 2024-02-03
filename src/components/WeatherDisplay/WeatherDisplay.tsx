@@ -76,7 +76,13 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
                   {system === "metric" ? "°C" : "°F"}
                   <br></br>
                   {weather[0].description}
-                  <ImgLoader src={weatherIcon} alt={weather[0].description} />
+                  <ImgLoader
+                    src={weatherIcon}
+                    alt={weather[0].description}
+                    width="10rem"
+                    height="10rem"
+                    filter="var(--filter)"
+                  />
                 </div>
               </div>
             );

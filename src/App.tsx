@@ -15,7 +15,12 @@ export default function App() {
         <div className="navbar">
           {lang === "en" ? "Weather App" : "Aplikacja Pogodowa"}
         </div>
-        <WeatherApi lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode}/>
+        <WeatherApi
+          lang={lang}
+          setLang={setLang}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
       </div>
     </QueryClientProvider>
   );

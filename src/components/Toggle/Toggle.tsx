@@ -10,10 +10,10 @@ function Toggle({ darkMode, setDarkMode }: ToggleProps) {
   return (
     <div className="darkmode">
       <input
-      type="checkbox"
-      className="toggle" 
-      checked={darkMode}
-      onChange={() => setDarkMode(!darkMode)}
+        type="checkbox"
+        className="toggle"
+        checked={darkMode}
+        onChange={() => setDarkMode(!darkMode)}
       />
     </div>
   );

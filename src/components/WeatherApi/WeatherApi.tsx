@@ -7,6 +7,7 @@ import System from "../System/System";
 import LangContext from "../../contexts/LangContext/Lang";
 import Toggle from "../Toggle/Toggle";
 import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
+import ImgLoader from "../ImgLoader/ImgLoader";
 import "./WeatherApi.scss";
 
 const axiosClient = axios.create({
@@ -72,34 +73,44 @@ const WeatherApi: React.FC<{
 
   return (
     <ThemeContext.Provider value={darkMode}>
-    <LangContext.Provider value={lang}>
-      <div className="base">
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Search..." onChange={handleChange} className="search"/>
-          <button type="submit" className="submit">
-            {" "}
-            {lang === "en" ? "Search" : "Szukaj"}{" "}
-          </button>
-          <System system={system} setSystem={setSystem} lang={lang} />
-          <Toggle darkMode={darkMode} setDarkMode={setDarkMode} />
-          <Select lang={lang} setLang={setLang} refetch={refetch} />
-          {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
-          {isError && (
-            <div>
-              {lang === "en" ? "Error:" : "Błąd:"}
-              {lang === "en"
-                ? error?.message
-                : "Żądanie nie powiodło się z kodem stanu 404"}
-            </div>
-          )}
-        </form>
-        <div className="data">
-          {data && (
-            <WeatherDisplay data={data.data} system={system} lang={lang} />
-          )}
+      <LangContext.Provider value={lang}>
+        <div className="base">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={handleChange}
+              className="search"
+            />
+            <button type="submit" className="submit">
+              <ImgLoader
+                src="internal/search-icon.svg"
+                alt="icon"
+                height="1rem"
+                width="1rem"
+                filter="var(--search-filter)"
+              />
+            </button>
+            <System system={system} setSystem={setSystem} lang={lang} />
+            <Toggle darkMode={darkMode} setDarkMode={setDarkMode} />
+            <Select lang={lang} setLang={setLang} refetch={refetch} />
+            {isLoading && <div>{lang === "en" ? "Loading" : "Ładowanie"}</div>}
+            {isError && (
+              <div>
+                {lang === "en" ? "Error:" : "Błąd:"}
+                {lang === "en"
+                  ? error?.message
+                  : "Żądanie nie powiodło się z kodem stanu 404"}
+              </div>
+            )}
+          </form>
+          <div className="data">
+            {data && (
+              <WeatherDisplay data={data.data} system={system} lang={lang} />
+            )}
+          </div>
         </div>
-      </div>
-    </LangContext.Provider>
+      </LangContext.Provider>
     </ThemeContext.Provider>
   );
 };

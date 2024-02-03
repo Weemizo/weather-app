@@ -15,6 +15,8 @@
   --border: #333;
   --filter: invert(33%) sepia(85%) saturate(872%) hue-rotate(172deg)
     brightness(95%) contrast(103%);
+  --search-filter: invert(14%) sepia(9%) saturate(2499%) hue-rotate(188deg)
+    brightness(91%) contrast(87%);
 }
 
 [data-theme="dark"] {
@@ -27,4 +29,6 @@
   --border: #414749;
   --filter: invert(33%) sepia(85%) saturate(872%) hue-rotate(172deg)
     brightness(95%) contrast(103%);
+  --search-filter: invert(99%) sepia(3%) saturate(5798%) hue-rotate(296deg)
+    brightness(118%) contrast(58%);
 }

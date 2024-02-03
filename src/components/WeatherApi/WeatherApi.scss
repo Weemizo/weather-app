@@ -18,7 +18,7 @@
 
 .search {
   border-radius: 2rem;
-  width: 150px;
+  width: 5rem;
   font-size: 1rem;
   outline: none;
   transition:
@@ -29,20 +29,18 @@
   border: 1px solid var(--border);
   font-weight: 500;
   padding: 0.5rem;
-  margin-right: 1rem;
   background-color: var(--2nd-background);
   color: var(--text);
 }
 
 .search:focus {
-  width: 200px;
+  width: 15rem;
   background-color: var(--elements);
 }
 
 .submit,
 Select {
   border-radius: 2rem;
-  font-size: 1rem;
   outline: none;
   border: 1px solid var(--border);
   font-weight: 500;
@@ -51,4 +49,8 @@ Select {
   background-color: var(--2nd-background);
   cursor: pointer;
   color: var(--text);
+}
+
+.submit:hover {
+  background-color: var(--elements);
 }
